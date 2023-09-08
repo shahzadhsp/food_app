@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "880050974313",
+    "project_id": "food-app-6a614",
+    "storage_bucket": "food-app-6a614.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880050974313:android:e66c3cb847f6605f0abcf8",
+        "android_client_info": {
+          "package_name": "com.techbrothers.food_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "880050974313-2ipn5c31rmc4jos2iv0g5n074ghmml5u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfG_VY9mors74IV2A4vgGGY5AwqmxB70U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "880050974313-2ipn5c31rmc4jos2iv0g5n074ghmml5u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
