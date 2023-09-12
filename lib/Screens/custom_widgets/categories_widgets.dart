@@ -31,16 +31,20 @@ class CategoriesContainer extends StatelessWidget {
           SizedBox(
             height: 4,
           ),
-          Text(
-            text,
-            style: TextStyle(fontSize: 16),
+          FittedBox(
+            child: Text(
+              text,
+              style: TextStyle(fontSize: 16),
+            ),
           ),
           SizedBox(
-            height: 5,
+            height: 0,
           ),
-          Text(
-            '\$${price}',
-            style: TextStyle(fontSize: 16),
+          FittedBox(
+            child: Text(
+              '\$${price}',
+              style: TextStyle(fontSize: 16),
+            ),
           ),
         ],
       ),
