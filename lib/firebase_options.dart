@@ -50,20 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAfG_VY9mors74IV2A4vgGGY5AwqmxB70U',
-    appId: '1:880050974313:android:e66c3cb847f6605f0abcf8',
-    messagingSenderId: '880050974313',
-    projectId: 'food-app-6a614',
-    storageBucket: 'food-app-6a614.appspot.com',
+    apiKey: 'AIzaSyA2POjJybA_J-Ica2EpFiVmPmgU8eMd4mk',
+    appId: '1:214288359157:android:97c9211739f3a89454afbc',
+    messagingSenderId: '214288359157',
+    projectId: 'food-app-d5de3',
+    storageBucket: 'food-app-d5de3.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD7mS7V3s8Kbp1h3BohSuRI8sX7T6GFHj8',
-    appId: '1:880050974313:ios:5c1abafbcdaf7d480abcf8',
-    messagingSenderId: '880050974313',
-    projectId: 'food-app-6a614',
-    storageBucket: 'food-app-6a614.appspot.com',
-    iosClientId: '880050974313-n997qm7297v8tkl1f1t44lo8i2krjp7q.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDvXyMXGxQtfSChYRhxof6luesR_9NTbf4',
+    appId: '1:214288359157:ios:d6595bce277feb5054afbc',
+    messagingSenderId: '214288359157',
+    projectId: 'food-app-d5de3',
+    storageBucket: 'food-app-d5de3.appspot.com',
     iosBundleId: 'com.example.foodApp',
   );
 }

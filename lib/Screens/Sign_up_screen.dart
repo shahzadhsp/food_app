@@ -172,11 +172,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 Colors.deepOrangeAccent)),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //       builder: (context) => HomeScreen(),
-                            //     ));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => HomeScreen(),
+                                ));
                             // Form is valid, perform login logic here
                             firebaseAuth
                                 .createUserWithEmailAndPassword(

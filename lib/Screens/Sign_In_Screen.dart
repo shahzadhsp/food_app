@@ -17,13 +17,11 @@ class _SignInScreenState extends State<SignInScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
- final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   // final FirebaseAuth auth = FirebaseAuth.instance;
- 
 
   @override
   Widget build(BuildContext context) {
-   
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -126,8 +124,8 @@ class _SignInScreenState extends State<SignInScreen> {
                                 Colors.deepOrangeAccent)),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            
-                           // Form is valid, perform login logic here
+                          
+                            // Form is valid, perform login logic here
                             firebaseAuth
                                 .signInWithEmailAndPassword(
                                     email: _emailController.text.trim(),
@@ -140,7 +138,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                     builder: (context) => HomeScreen(),
                                   ));
                             });
-                           
+
                             // Perform login with email and password
                             // ...
                           }
