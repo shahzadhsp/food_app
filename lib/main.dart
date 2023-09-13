@@ -1,14 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:food_app/Screens/main_profile.dart';
 import 'package:food_app/firebase_options.dart';
 
 import 'package:food_app/provider/home_provider.dart';
 import 'package:food_app/provider/wish_list_provider.dart';
 import 'package:provider/provider.dart';
 
-import 'Screens/home_screen.dart';
 
-import 'Screens/onboardingscreen.dart';
 
 main() async {
  
@@ -35,7 +34,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: OnBoardingScreen(),
+        home: MainProfile(),
       ),
     );
   }

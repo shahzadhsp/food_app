@@ -237,9 +237,7 @@ class _CartScreenState extends State<CartScreen> {
                                 child: Column(
                                   children: [
                                     InkWell(
-                                        onTap: () {
-                                          
-                                        }, child: Icon(Icons.add)),
+                                        onTap: () {}, child: Icon(Icons.add)),
                                     SizedBox(
                                       height: 4,
                                     ),
@@ -302,11 +300,12 @@ class _CartScreenState extends State<CartScreen> {
                       borderRadius: BorderRadius.circular(20)),
                   child: IconButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => CheckoutScreen(),
-                          ));
+                      print("checkout button is pressed ");
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //       builder: (context) => CheckoutScreen(),
+                      //     ));
                     },
                     icon: Text('Checkout'),
                   ),
