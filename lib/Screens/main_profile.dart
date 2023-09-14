@@ -1,11 +1,7 @@
-import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
-import 'package:food_app/Screens/checkout_screen.dart';
+
 import 'package:food_app/Screens/custom_widgets/profile_card.dart';
 import 'package:food_app/Screens/user_profile.dart';
-import 'package:provider/provider.dart';
-import '../provider/home_provider.dart';
 
 class MainProfile extends StatefulWidget {
   const MainProfile({super.key});
@@ -20,8 +16,6 @@ class _MainProfileState extends State<MainProfile> {
     double height =
         MediaQuery.of(context).size.height - kBottomNavigationBarHeight;
     double width = MediaQuery.of(context).size.width;
-  
-
 
     return SafeArea(
         child: Scaffold(

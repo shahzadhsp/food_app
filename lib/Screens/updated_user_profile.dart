@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/Screens/custom_widgets/profile_custom_button.dart';
-import 'package:food_app/Screens/updated_user_profile.dart';
 
 import 'package:food_app/Screens/widgets/profile_textformfield.dart';
 
-class UserProfile extends StatefulWidget {
-  const UserProfile({super.key});
+class UpdatedUserProfile extends StatefulWidget {
+  const UpdatedUserProfile({super.key});
 
   @override
-  State<UserProfile> createState() => _UserProfileState();
+  State<UpdatedUserProfile> createState() => _UpdatedUserProfileState();
 }
 
-class _UserProfileState extends State<UserProfile> {
+class _UpdatedUserProfileState extends State<UpdatedUserProfile> {
   @override
   Widget build(BuildContext context) {
     double height =
@@ -119,17 +118,7 @@ class _UserProfileState extends State<UserProfile> {
                           SizedBox(
                             height: 70,
                           ),
-                          ProfileCustomButton(
-                            text: 'Edit Profile',
-                            onPressed: () {
-                              print('updated user profile');
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => UpdatedUserProfile(),
-                                  ));
-                            },
-                          ),
+                          ProfileCustomButton(text: 'Update Profile'),
                         ],
                       ),
                     ),

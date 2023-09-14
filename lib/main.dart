@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:food_app/Screens/home_screen.dart';
 import 'package:food_app/Screens/main_profile.dart';
 import 'package:food_app/firebase_options.dart';
 
