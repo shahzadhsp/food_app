@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/Screens/home_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Sign_up_screen.dart';
 
@@ -124,19 +125,30 @@ class _SignInScreenState extends State<SignInScreen> {
                                 Colors.deepOrangeAccent)),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                          
                             // Form is valid, perform login logic here
                             firebaseAuth
                                 .signInWithEmailAndPassword(
                                     email: _emailController.text.trim(),
                                     password:
                                         _passwordController.text.toString())
-                                .then((value) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => HomeScreen(),
-                                  ));
+                                .then((auth) {
+                              var uid = auth.user?.uid;
+                              SharedPreferences.getInstance().then((value) {
+                                value.setString('uid', uid!);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => HomeScreen(),
+                                    )).onError((error, stackTrace) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      duration: Duration(seconds: 3),
+                                      content: Text(error.toString() +
+                                          stackTrace.toString()),
+                                    ),
+                                  );
+                                });
+                              });
                             });
 
                             // Perform login with email and password

@@ -1,7 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:food_app/Screens/Sign_In_Screen.dart';
 
 import 'package:food_app/Screens/custom_widgets/profile_card.dart';
 import 'package:food_app/Screens/user_profile.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MainProfile extends StatefulWidget {
   const MainProfile({super.key});
@@ -11,12 +15,33 @@ class MainProfile extends StatefulWidget {
 }
 
 class _MainProfileState extends State<MainProfile> {
+  var uid;
+
+  @override
+  void initState() {
+    getProfile();
+    super.initState();
+    SharedPreferences.getInstance().then((instance) {
+      uid = instance.getString('uid');
+    });
+  }
+
+  Stream<QuerySnapshot<Object?>> getProfile() {
+    final currentUser = FirebaseAuth.instance.currentUser;
+    final firestore = FirebaseFirestore.instance
+        .collection('shahzad')
+        .where('uid', isEqualTo: currentUser!.uid)
+        .snapshots();
+
+    return firestore;
+  }
+
   @override
   Widget build(BuildContext context) {
     double height =
         MediaQuery.of(context).size.height - kBottomNavigationBarHeight;
     double width = MediaQuery.of(context).size.width;
-
+    final auth = FirebaseAuth.instance;
     return SafeArea(
         child: Scaffold(
       body: Stack(
@@ -65,25 +90,64 @@ class _MainProfileState extends State<MainProfile> {
                   topRight: Radius.circular(40),
                 ),
               ),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 30,
-                  ),
-                  CircleAvatar(
-                    radius: 40,
-                    backgroundImage: NetworkImage(
-                        'https://images.unsplash.com/photo-1519456264917-42d0aa2e0625?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q'),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text('Muhammad Shahzad'),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text('+923044978989'),
-                ],
+              child: StreamBuilder<QuerySnapshot>(
+                stream: getProfile(),
+                builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.active) {
+                    if (snapshot.hasData) {
+                      var userData = snapshot.data!.docs[uid];
+                      print(
+                          "ppppppppppppppppppppppppppp${userData}pppppppppppppp");
+
+                      return Column(
+                        children: [
+                          SizedBox(
+                            height: 30,
+                          ),
+                          CircleAvatar(
+                            radius: 40,
+                            backgroundImage: NetworkImage(
+                                'https://images.unsplash.com/photo-1519456264917-42d0aa2e0625?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q'),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text("Name: ${userData['name'].toString()}"),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text("Phone: ${userData['phone'].toString()}"),
+                        ],
+                      );
+                    }
+                  } else if (snapshot.connectionState ==
+                      ConnectionState.waiting) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+
+                  return Column(
+                    children: [
+                      SizedBox(
+                        height: 30,
+                      ),
+                      CircleAvatar(
+                        radius: 40,
+                        backgroundImage: NetworkImage(
+                            'https://images.unsplash.com/photo-1519456264917-42d0aa2e0625?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q'),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text("Muhammad Shahzad"),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text("03044978989"),
+                    ],
+                  );
+                },
               ),
             ),
           ),
@@ -122,7 +186,19 @@ class _MainProfileState extends State<MainProfile> {
                       icon: Icons.favorite_border_outlined, text: 'Wishlist'),
                   ProfileCard(
                       icon: Icons.shopping_cart, text: 'Order Tracking '),
-                  ProfileCard(icon: Icons.logout, text: 'Logout')
+                  ProfileCard(
+                    icon: Icons.logout,
+                    text: 'Logout',
+                    onTap: () {
+                      auth.signOut().then((value) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SignInScreen(),
+                            ));
+                      });
+                    },
+                  )
                 ],
               ),
             ),

@@ -20,10 +20,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
   // Ceate a instance for Authentication
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-  // final DatabaseReference databaseReference =
-  //     FirebaseDatabase.instance.ref("users");
+  final firestore = FirebaseFirestore.instance.collection('shahzad');
 
   @override
   Widget build(BuildContext context) {
@@ -136,6 +136,33 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       const SizedBox(height: 20.0),
                       TextFormField(
+                        cursorColor: Colors.deepOrangeAccent,
+                        controller: _addressController,
+                        decoration: InputDecoration(
+                          hintText: 'Address',
+                          hintStyle: TextStyle(color: Colors.deepOrangeAccent),
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintMaxLines: 1,
+                          labelText: 'Enter Your Address',
+                          labelStyle: TextStyle(color: Colors.deepOrangeAccent),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          // prefixIcon:
+                          //     Icon(Icons.phone, color: Colors.deepOrangeAccent),
+                        ),
+                        validator: (value) {
+                          var newValue = value ?? '';
+                          if (newValue.isEmpty) {
+                            return 'Address is Required';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 20.0),
+                      TextFormField(
                         controller: _passwordController,
                         decoration: InputDecoration(
                           hintText: 'Password',
@@ -183,31 +210,40 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     email: _emailController.text.trim(),
                                     password: _passwordController.text.trim())
                                 .then((value) {
+                              var uid = value.user?.uid;
                               String id = DateTime.now()
                                   .millisecondsSinceEpoch
                                   .toString();
-                              FirebaseFirestore.instance
-                                  .collection('shahzad')
-                                  .doc(id)
-                                  .set({
+                              firestore.doc(id).set({
                                 'id': id,
                                 'name': _nameController.text.toString(),
                                 'email': _emailController.text.toString(),
                                 'phone': _phoneController.text.toString(),
+                                'address': _addressController.text.toString(),
                                 'password': _passwordController.text.toString(),
+                                'uid': uid
                               }).then((value) {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => HomeScreen(),
-                                    ));
+                                      builder: (context) => SignInScreen(),
+                                    )).onError((error, stackTrace) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      duration: Duration(seconds: 3),
+                                      content: Text(error.toString()),
+                                    ),
+                                  );
+                                });
                               });
                             });
+                            
                             print(_emailController.text);
                             print(_phoneController.text);
 
                             print(_passwordController.text);
                             print(_nameController.text);
+                            print(_addressController.text);
 
                             // Perform login with email and password
                             // ...

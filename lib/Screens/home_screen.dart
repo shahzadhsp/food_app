@@ -3,6 +3,7 @@ import 'package:food_app/Screens/cart_screen.dart';
 import 'package:food_app/Screens/categories_screen.dart';
 import 'package:food_app/Screens/custom_widgets/categories_widgets.dart';
 import 'package:food_app/Screens/custom_widgets/popular_container.dart';
+import 'package:food_app/Screens/main_profile.dart';
 import 'package:food_app/Screens/offers_screen.dart';
 import 'package:food_app/Screens/popular_screen.dart';
 import 'package:food_app/Screens/profile_screen.dart';
@@ -210,7 +211,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ProfileScreen(),
+                      builder: (context) => MainProfile(),
                     ));
               },
               icon: Icons.person,
