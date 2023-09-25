@@ -32,7 +32,7 @@ class _MainProfileState extends State<MainProfile> {
         .collection('shahzad')
         .where('uid', isEqualTo: currentUser!.uid)
         .snapshots();
-
+    print(currentUser.uid);
     return firestore;
   }
 
@@ -95,7 +95,7 @@ class _MainProfileState extends State<MainProfile> {
                 builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                   if (snapshot.connectionState == ConnectionState.active) {
                     if (snapshot.hasData) {
-                      var userData = snapshot.data!.docs[uid];
+                      var userData = snapshot.data!.docs.first;
                       print(
                           "ppppppppppppppppppppppppppp${userData}pppppppppppppp");
 

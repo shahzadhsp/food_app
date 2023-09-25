@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
+
 import 'package:flutter/material.dart';
 import 'package:food_app/Screens/Sign_In_Screen.dart';
 import 'package:food_app/Screens/home_screen.dart';
@@ -164,6 +164,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       const SizedBox(height: 20.0),
                       TextFormField(
                         controller: _passwordController,
+                        obscureText: true,
                         decoration: InputDecoration(
                           hintText: 'Password',
                           hintStyle: TextStyle(color: Colors.deepOrangeAccent),
@@ -237,7 +238,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 });
                               });
                             });
-                            
+
                             print(_emailController.text);
                             print(_phoneController.text);
 

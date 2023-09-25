@@ -84,6 +84,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       const SizedBox(height: 20.0),
                       TextFormField(
                         controller: _passwordController,
+                        obscureText: true,
                         decoration: InputDecoration(
                           hintText: 'Password',
                           hintStyle: TextStyle(color: Colors.deepOrangeAccent),
@@ -126,6 +127,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             // Form is valid, perform login logic here
+
                             firebaseAuth
                                 .signInWithEmailAndPassword(
                                     email: _emailController.text.trim(),
