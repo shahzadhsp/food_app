@@ -293,21 +293,24 @@ class _CartScreenState extends State<CartScreen> {
                             Text('Total\$' + value.getTotalPrice().toString()));
                   },
                 ),
-                Container(
-                  width: 100,
-                  decoration: BoxDecoration(
-                      color: Colors.deepOrangeAccent,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: IconButton(
-                    onPressed: () {
-                      print("checkout button is pressed ");
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (context) => CheckoutScreen(),
-                      //     ));
-                    },
-                    icon: Text('Checkout'),
+                InkWell(
+                  onTap: () {
+                    print("checkout button is pressed ");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CheckoutScreen(),
+                        ));
+                  },
+                  child: Container(
+                    width: 100,
+                    height: 60,
+                    decoration: BoxDecoration(
+                        color: Colors.deepOrangeAccent,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Center(
+                      child: Text('Checkout'),
+                    ),
                   ),
                 ),
               ],

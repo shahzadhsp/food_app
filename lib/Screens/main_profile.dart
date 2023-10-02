@@ -112,11 +112,11 @@ class _MainProfileState extends State<MainProfile> {
                           SizedBox(
                             height: 5,
                           ),
-                          Text("Name: ${userData['name'].toString()}"),
+                          Text("${userData['name'].toString()}",style: TextStyle(fontSize: 18)),
                           SizedBox(
                             height: 5,
                           ),
-                          Text("Phone: ${userData['phone'].toString()}"),
+                          Text("${userData['phone'].toString()}",style: TextStyle(fontSize: 16),),
                         ],
                       );
                     }
